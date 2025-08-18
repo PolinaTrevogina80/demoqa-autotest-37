@@ -15,6 +15,7 @@ public class FirstTest {
     {
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.holdBrowserOpen = true;
     }
 
     @Test
