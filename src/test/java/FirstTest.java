@@ -1,6 +1,9 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
@@ -43,6 +46,12 @@ public class FirstTest {
         $("[for=hobbies-checkbox-2").click();
         $("[for=hobbies-checkbox-3").click();
 
+        //File
+        SelenideElement fileInput = $("input[type='file']");
+        File file = new File("src/test/resources/ava.jpg");
+        fileInput.uploadFile(file);
+
+
         //Address
         $("[id=currentAddress").setValue("Neverland, St.Peters st, 1");
         $("[id=react-select-3-input").setValue("NCR");
@@ -59,6 +68,7 @@ public class FirstTest {
         $("[class=table-responsive]").shouldHave(text("1234567890"));
         $("[class=table-responsive]").shouldHave(text("01 January,2000"));
         $("[class=table-responsive]").shouldHave(text("Math"));
+        $("[class=table-responsive]").shouldHave(text("ava.jpg"));
         $("[class=table-responsive]").shouldHave(text("Sports, Reading, Music"));
         $("[class=table-responsive]").shouldHave(text("Neverland, St.Peters st, 1"));
         $("[class=table-responsive]").shouldHave(text("NCR Delhi"));
