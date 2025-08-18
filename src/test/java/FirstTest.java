@@ -14,11 +14,12 @@ public class FirstTest {
     static void configTest()
     {
         Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @Test
     void openTest() {
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
         $("[id=app]").shouldHave(text("Practice Form"));
     }
 
