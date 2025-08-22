@@ -31,7 +31,7 @@ public class GithubWikiTest {
     }
 
     @Test
-    void githubWikiNavigation() {
+    void githubWikiNavigationTest() {
         open("/");
 
         //Поиск по слову selenide
