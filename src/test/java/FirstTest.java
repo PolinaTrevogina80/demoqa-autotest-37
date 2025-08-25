@@ -15,7 +15,6 @@ public class FirstTest {
     {
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -27,6 +26,9 @@ public class FirstTest {
     @Test
     void fillFormTest() {
         open("https://demoqa.com/automation-practice-form");
+        //Удаление рекламных баннеров
+        executeJavaScript("$('footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
 
         //User Data
         $("[id=firstName").setValue("Polly");
@@ -49,9 +51,7 @@ public class FirstTest {
         $("[for=hobbies-checkbox-3").click();
 
         //File
-        SelenideElement fileInput = $("input[type='file']");
-        File file = new File("src/test/resources/ava.jpg");
-        fileInput.uploadFile(file);
+        $("input[type='file']").uploadFromClasspath("ava.jpg");
 
 
         //Address
