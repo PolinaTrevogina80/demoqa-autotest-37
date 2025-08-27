@@ -1,3 +1,5 @@
+package qa.guru;
+
 public class JavaCorePart1 {
 
     public static void main(String[] args) {
