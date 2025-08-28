@@ -2,23 +2,15 @@ package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HobbiesComponent {
-    private final SelenideElement hobby1Input = $("[for=hobbies-checkbox-1");
-    private final SelenideElement hobby2Input = $("[for=hobbies-checkbox-2");
-    private final SelenideElement hobby3Input = $("[for=hobbies-checkbox-3");
+
+    private final SelenideElement hobbyInput = $("#hobbiesWrapper");
 
     public void setHobby(String hobby) {
-        if (hobby.equals("Sports")){
-            setHobby1();
-        }
-        if (hobby.equals("Reading")){
-            setHobby2();
-        }
-        if (hobby.equals("Music")){
-            setHobby3();
-        }
+        hobbyInput.$(byText(hobby)).click();
     }
 
     public String getHobby(String hobby) {
@@ -28,18 +20,6 @@ public class HobbiesComponent {
             case "Music" -> getHobby3();
             default -> "";
         };
-    }
-
-    private void setHobby1() {
-        hobby1Input.click();
-    }
-
-    public void setHobby2() {
-        hobby2Input.click();
-    }
-
-    public void setHobby3() {
-        hobby3Input.click();
     }
 
     public String getHobby1(){
