@@ -3,6 +3,8 @@ package data.userData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.RandomUtils.getRandomFromList;
+
 public class Date {
     private String
             day,
@@ -45,9 +47,7 @@ public class Date {
         months.add("November");
         months.add("December");
 
-        int ind= (int) (Math.random()*months.size());
-
-        this.month = months.get(ind);
+        this.month = getRandomFromList(months);
     }
 
     private void setRandomYear(){

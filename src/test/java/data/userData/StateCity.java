@@ -3,6 +3,8 @@ package data.userData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.RandomUtils.getRandomFromList;
+
 public class StateCity {
     private String state;
     private String city;
@@ -14,9 +16,7 @@ public class StateCity {
         state.add("Haryana");
         state.add("Rajasthan");
 
-        int ind= (int) (Math.random()*4);
-
-        this.state = state.get(ind);
+        this.state = getRandomFromList(state);
     }
 
     public void setRandomCity(){
@@ -47,9 +47,7 @@ public class StateCity {
             }
         }
 
-        int ind= (int) (Math.random()*city.size());
-
-        this.city = city.get(ind);
+        this.city = getRandomFromList(city);
     }
 
     public String getState(){

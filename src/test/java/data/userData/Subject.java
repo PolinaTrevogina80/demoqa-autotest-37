@@ -3,6 +3,8 @@ package data.userData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.RandomUtils.getRandomFromList;
+
 public class Subject {
     private String subject;
 
@@ -23,9 +25,7 @@ public class Subject {
         subject.add("Hindi");
         subject.add("Civics");
 
-        int ind= (int) (Math.random()*subject.size());
-
-        this.subject = subject.get(ind);
+        this.subject = getRandomFromList(subject);
     }
 
     public String getSubject(){

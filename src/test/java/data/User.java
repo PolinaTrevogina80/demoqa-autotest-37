@@ -5,12 +5,10 @@ import data.userData.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Locale;
-import java.util.Random;
+
+import static utils.RandomUtils.getRandomNumberString;
+import static utils.RandomUtils.getRandomResourceFileName;
 
 
 public class User {
@@ -33,7 +31,7 @@ public class User {
         lastName = faker.name().lastName();
         email = faker.internet().emailAddress();
         streetAddress = faker.address().streetAddress();
-        phoneNumber = faker.phoneNumber().phoneNumber().replaceAll(" ", "").substring(0, 10);
+        phoneNumber = getRandomNumberString(10);
         gender.setRandomGender();
         birthDate.setRandomDate();
         subject.setRandomSubject();
@@ -47,26 +45,6 @@ public class User {
         fileName = getRandomResourceFileName();
     }
 
-    private static String getRandomResourceFileName() throws IOException, URISyntaxException {
-        String filename;
-
-        Path resourceDirectory = Paths.get("src","test","resources");
-
-        // Получить список всех файлов в папке
-        List<Path> files = Files.list(resourceDirectory)
-                .toList();
-
-        if (files.isEmpty()) {
-            throw new IOException("В папке ресурсов нет файлов.");
-        }
-
-        // Выбрать случайный файл
-        Random random = new Random();
-        Path randomFilePath = files.get(random.nextInt(files.size()));
-        filename = String.valueOf(randomFilePath.getFileName());
-
-    return filename;
-    }
 
 
 }

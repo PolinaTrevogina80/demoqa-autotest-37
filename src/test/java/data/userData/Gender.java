@@ -3,6 +3,8 @@ package data.userData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.RandomUtils.getRandomFromList;
+
 public class Gender {
     private String gender;
 
@@ -12,9 +14,7 @@ public class Gender {
         gender.add("Female");
         gender.add("Other");
 
-        int ind= (int) (Math.random()*gender.size());
-
-        this.gender = gender.get(ind);
+        this.gender = getRandomFromList(gender);
     }
 
     public String getGender(){

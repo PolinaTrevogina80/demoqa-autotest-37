@@ -2,6 +2,8 @@ package data.userData;
 
 import java.util.List;
 
+import static utils.RandomUtils.getRandomList;
+
 public class Hobbies {
     private int ind;
     private List<String> hobbies;
@@ -9,7 +11,7 @@ public class Hobbies {
     public void setHobbies()
     {
         setQuantity();
-        hobbies = List.of(new String[]{"Music", "Sports", "Reading"}).subList(0, ind);
+        hobbies = getRandomList(List.of(new String[]{"Music", "Sports", "Reading"}), ind);
     }
 
     public List<String> getHobbies()
