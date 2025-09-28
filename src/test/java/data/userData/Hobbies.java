@@ -1,17 +1,24 @@
 package data.userData;
 
+import com.github.javafaker.Faker;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static utils.RandomUtils.getRandomList;
 
 public class Hobbies {
     private int ind;
     private List<String> hobbies;
+    private Faker faker = new Faker(new Locale("en-GB"));;
+
 
     public void setHobbies()
     {
+       List<String> hobbies = Arrays.asList("Music", "Sports", "Reading");
         setQuantity();
-        hobbies = getRandomList(List.of(new String[]{"Music", "Sports", "Reading"}), ind);
+        this.hobbies = getRandomList(hobbies, ind);
     }
 
     public List<String> getHobbies()
@@ -20,7 +27,7 @@ public class Hobbies {
     }
 
     private void setQuantity (){
-        ind = (int) (Math.random()*3);
+        ind = faker.number().numberBetween(1,3);
     }
 
 }

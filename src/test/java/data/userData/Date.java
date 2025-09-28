@@ -1,15 +1,17 @@
 package data.userData;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import static utils.RandomUtils.getRandomFromList;
+import com.github.javafaker.Faker;
+
 
 public class Date {
-    private String
+    public static String
             day,
             month,
             year;
+
+    private Faker faker = new Faker(new Locale("en-GB"));;
 
     public String getDay(){
         return this.day;
@@ -24,34 +26,23 @@ public class Date {
     }
 
     public void setRandomDate(){
-        setRandomDay();
-        setRandomMonth();
-        setRandomYear();
-    }
-
-    private void setRandomDay(){
-        this.day = String.valueOf((int) (Math.random()*30));
-    }
-
-    private void setRandomMonth(){
-        List<String> months = new ArrayList<>();
-        months.add("January");
-        months.add("February");
-        months.add("March");
-        months.add("April");
-        months.add("May");
-        months.add("June");
-        months.add("July");
-        months.add("September");
-        months.add("October");
-        months.add("November");
-        months.add("December");
-
-        this.month = getRandomFromList(months);
-    }
-
-    private void setRandomYear(){
-        this.year = String.valueOf((int) (Math.random()*75)+1950);
+        java.util.Date date = faker.date().birthday(0,100);
+        day = String.valueOf(date.getDay());
+        year = String.valueOf(date.getYear()+1900);
+        switch (date.getMonth()){
+            case Calendar.JANUARY: month="January";break;
+            case Calendar.FEBRUARY: month="February";break;
+            case Calendar.MARCH: month="March";break;
+            case Calendar.APRIL: month="April";break;
+            case Calendar.MAY: month="May";break;
+            case Calendar.JUNE: month="June";break;
+            case Calendar.JULY: month="July";break;
+            case Calendar.AUGUST: month="August";break;
+            case Calendar.SEPTEMBER: month="September";break;
+            case Calendar.OCTOBER: month="October";break;
+            case Calendar.NOVEMBER: month="November";break;
+            case Calendar.DECEMBER: month="December";break;
+        }
     }
 
 

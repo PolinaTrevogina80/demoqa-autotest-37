@@ -17,7 +17,7 @@ public class User {
     public String email;
     public String streetAddress;
     public String phoneNumber;
-    public Gender gender = new Gender();
+    public String gender;
     public Date birthDate = new Date();
     public Hobbies hobbies = new Hobbies();
     public StateCity stateCity = new StateCity();
@@ -31,17 +31,13 @@ public class User {
         lastName = faker.name().lastName();
         email = faker.internet().emailAddress();
         streetAddress = faker.address().streetAddress();
-        phoneNumber = getRandomNumberString(10);
-        gender.setRandomGender();
+        phoneNumber = faker.phoneNumber().subscriberNumber(10);;
+        gender = faker.options().nextElement(Gender.genders);
         birthDate.setRandomDate();
         subject.setRandomSubject();
-        hobbies.setHobbies();
-        gender.setRandomGender();
-        birthDate.setRandomDate();
         hobbies.setHobbies();
         stateCity.setRandomState();
         stateCity.setRandomCity();
-        subject.setRandomSubject();
         fileName = getRandomResourceFileName();
     }
 

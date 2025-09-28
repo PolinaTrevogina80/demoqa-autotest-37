@@ -28,7 +28,7 @@ public class AutomationFormWithRandomDataTest extends TestBase {
                 .setLastName(user.lastName)
                 .setUserEmail(user.email)
                 .setPhoneNumber(user.phoneNumber)
-                .setGender(user.gender.getGender())
+                .setGender(user.gender)
                 .setDate(user.birthDate.getDay(), user.birthDate.getMonth(), user.birthDate.getYear())
                 .setFile(user.fileName)
                 .setSubject(user.subject.getSubject())
@@ -41,7 +41,7 @@ public class AutomationFormWithRandomDataTest extends TestBase {
         result.checkFormAppears()
                 .checkName(user.firstName,user.lastName)
                 .checkEmail(user.email)
-                .checkGender(user.gender.getGender())
+                .checkGender(user.gender)
                 .checkNumber(user.phoneNumber)
                 .checkDate(user.birthDate.getDay(),user.birthDate.getMonth(),user.birthDate.getYear())
                 .checkSubject(user.subject.getSubject())
@@ -61,12 +61,12 @@ public class AutomationFormWithRandomDataTest extends TestBase {
                 .setFirstName(user.firstName)
                 .setLastName(user.lastName)
                 .setPhoneNumber(user.phoneNumber)
-                .setGender(user.gender.getGender())
+                .setGender(user.gender)
                 .submit();
 
         result.checkFormAppears()
                 .checkName(user.firstName, user.lastName)
-                .checkGender(user.gender.getGender())
+                .checkGender(user.gender)
                 .checkNumber(user.phoneNumber);
     }
 

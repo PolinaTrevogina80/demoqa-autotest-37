@@ -1,48 +1,45 @@
 package data.userData;
 
+import com.github.javafaker.Faker;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static utils.RandomUtils.getRandomFromList;
+import static utils.RandomUtils.getRandomList;
 
 public class StateCity {
     private String state;
     private String city;
+    private Faker faker = new Faker(new Locale("en-GB"));;
+
 
     public void setRandomState(){
-        List<String> state = new ArrayList<>();
-        state.add("NCR");
-        state.add("Uttar Pradesh");
-        state.add("Haryana");
-        state.add("Rajasthan");
+        List<String> states = Arrays.asList("NCR","Uttar Pradesh","Haryana","Rajasthan");
 
-        this.state = getRandomFromList(state);
+        this.state = faker.options().nextElement(states);;
     }
 
     public void setRandomCity(){
-        List<String> city = new ArrayList<>();
+        List<String> city = List.of();
 
         switch (state) {
             case "NCR": {
-                city.add("Delhi");
-                city.add("Gurgaon");
-                city.add("Noida");
+                city = Arrays.asList("Delhi","Gurgaon","Noida");
                 break;
             }
             case "Uttar Pradesh": {
-                city.add("Agra");
-                city.add("Lucknow");
-                city.add("Merrut");
+                city = Arrays.asList("Agra","Lucknow","Merrut");
                 break;
             }
             case "Haryana": {
-                city.add("Karnal");
-                city.add("Panipat");
+                city = Arrays.asList("Karnal","Panipat");
                 break;
             }
             case "Rajasthan": {
-                city.add("Jaipur");
-                city.add("Jaiselmer");
+                city = Arrays.asList("Jaipur","Jaiselmer");
                 break;
             }
         }
