@@ -29,13 +29,13 @@ public class AutomationFormWithRandomDataTest extends TestBase {
                 .setUserEmail(user.email)
                 .setPhoneNumber(user.phoneNumber)
                 .setGender(user.gender)
-                .setDate(user.birthDate.getDay(), user.birthDate.getMonth(), user.birthDate.getYear())
+                .setDate(user.birthDay, user.birthMonth, user.birthYear)
                 .setFile(user.fileName)
-                .setSubject(user.subject.getSubject())
-                .setHobbies(user.hobbies.getHobbies())
+                .setSubject(user.subject)
+                .setHobbies(user.hobbies)
                 .setAddress(user.streetAddress)
-                .setState(user.stateCity.getState())
-                .setCity(user.stateCity.getCity())
+                .setState(user.state)
+                .setCity(user.city)
                 .submit();
 
         result.checkFormAppears()
@@ -43,12 +43,12 @@ public class AutomationFormWithRandomDataTest extends TestBase {
                 .checkEmail(user.email)
                 .checkGender(user.gender)
                 .checkNumber(user.phoneNumber)
-                .checkDate(user.birthDate.getDay(),user.birthDate.getMonth(),user.birthDate.getYear())
-                .checkSubject(user.subject.getSubject())
-                .checkHobbies(user.hobbies.getHobbies())
+                .checkDate(user.birthDay, user.birthMonth, user.birthYear)
+                .checkSubject(user.subject)
+                .checkHobbies(user.hobbies)
                 .checkFileName(user.fileName)
                 .checkAddress(user.streetAddress)
-                .checkStateAndCity(user.stateCity.getState(),user.stateCity.getCity());
+                .checkStateAndCity(user.state,user.city);
     }
 
     @Test
