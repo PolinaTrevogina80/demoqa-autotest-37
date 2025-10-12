@@ -1,13 +1,15 @@
 package data;
 
-import com.github.javafaker.Faker;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+
+
+import static utils.DateUtils.*;
+import static utils.RandomUtils.*;
 
 
 public class User {
@@ -24,73 +26,57 @@ public class User {
             birthDay,
             birthMonth,
             birthYear;
-    public java.util.Date birthDate;
+    public Date birthDate;
     public List<String> hobbies;
 
     public void createUser() throws IOException, URISyntaxException {
-        Faker faker = new Faker(new Locale("en-GB"));
-
         //личные данные
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        email = faker.internet().emailAddress();
-        streetAddress = faker.address().streetAddress();
-        phoneNumber = faker.phoneNumber().subscriberNumber(10);;
-        gender = faker.options().nextElement(Arrays.asList("Male", "Female", "Other"));
+        firstName = newFirstName();
+        lastName = newLastName();
+        email = newEmail();
+        streetAddress = newAddress();
+        phoneNumber = newPhone();
+        gender = newElementFromList(new String[]{"Male", "Female", "Other"});
 
         //дата
-        birthDate = faker.date().birthday(0,100);
+        birthDate = newBirthDate();
         birthDay = String.valueOf(birthDate.getDay());
         birthYear = String.valueOf(birthDate.getYear()+1900);
-        switch (birthDate.getMonth()){
-            case Calendar.JANUARY: birthMonth="January";break;
-            case Calendar.FEBRUARY: birthMonth="February";break;
-            case Calendar.MARCH: birthMonth="March";break;
-            case Calendar.APRIL: birthMonth="April";break;
-            case Calendar.MAY: birthMonth="May";break;
-            case Calendar.JUNE: birthMonth="June";break;
-            case Calendar.JULY: birthMonth="July";break;
-            case Calendar.AUGUST: birthMonth="August";break;
-            case Calendar.SEPTEMBER: birthMonth="September";break;
-            case Calendar.OCTOBER: birthMonth="October";break;
-            case Calendar.NOVEMBER: birthMonth="November";break;
-            case Calendar.DECEMBER: birthMonth="December";break;
-        }
+        birthMonth = convertMonthToText(Integer.valueOf(birthDate.getMonth()));
 
         //увлечения
-        subject = faker.options().nextElement(Arrays.asList("English","Chemistry","Computer Science","Commerce",
-                "Economics","Social Studies","Arts","History","Maths","Accounting","Physics",
-                "Biology","Hindi","Civics"));
-        hobbies = (Arrays.asList("Music", "Sports", "Reading").subList(0, faker.number().numberBetween(1,3)));
+        subject = newElementFromList(new String[]{"English", "Chemistry", "Computer Science", "Commerce",
+                "Economics", "Social Studies", "Arts", "History", "Maths", "Accounting", "Physics",
+                "Biology", "Hindi", "Civics"});
+        hobbies = (Arrays.stream(new String[]{"Music", "Sports", "Reading"}).toList()).subList(0, getRandomInt(0,3));
 
         //штат+город
-        state = faker.options().nextElement(Arrays.asList("NCR","Uttar Pradesh","Haryana","Rajasthan"));
-        city = faker.options().nextElement(cities(state));
+        state = newElementFromList(new String[]{"NCR","Uttar Pradesh","Haryana","Rajasthan"});
+        city = newElementFromList(cities(state));
 
         //файл
-        List<Path> files = getFiles();
-        fileName = String.valueOf(files.get(faker.random().nextInt(files.size())).getFileName());
+        fileName = getRandomResourceFileName();
         ;
     }
 
-    private List<String> cities(String state){
-        List<String> cities = List.of();
+    private String[] cities(String state){
+        String[] cities = new String[0];
 
         switch (state) {
             case "NCR": {
-                cities = Arrays.asList("Delhi","Gurgaon","Noida");
+                cities = new String[]{"Delhi", "Gurgaon", "Noida"};
                 break;
             }
             case "Uttar Pradesh": {
-                cities = Arrays.asList("Agra","Lucknow","Merrut");
+                cities = new String[]{"Agra","Lucknow","Merrut"};
                 break;
             }
             case "Haryana": {
-                cities = Arrays.asList("Karnal","Panipat");
+                cities = new String[]{"Karnal","Panipat"};
                 break;
             }
             case "Rajasthan": {
-                cities = Arrays.asList("Jaipur","Jaiselmer");
+                cities = new String[]{"Jaipur","Jaiselmer"};
                 break;
             }
         }
