@@ -1,7 +1,6 @@
 package data;
 
 import com.github.javafaker.Faker;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -74,7 +73,7 @@ public class User {
         ;
     }
 
-    private List<String> cities(@NotNull String state){
+    private List<String> cities(String state){
         List<String> cities = List.of();
 
         switch (state) {
@@ -99,7 +98,7 @@ public class User {
         return cities;
     }
 
-    private @NotNull List<Path> getFiles() throws IOException {
+    private List<Path> getFiles() throws IOException {
         Path resourceDirectory = Paths.get("src","test","resources");
         List<Path> files = Files.list(resourceDirectory)
                 .toList();
