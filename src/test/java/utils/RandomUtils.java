@@ -33,8 +33,8 @@ public class RandomUtils {
         return faker.phoneNumber().subscriberNumber(10);
     }
 
-    public static String newElementFromList(String[] list){
-        return faker.options().nextElement(Arrays.asList(list));
+    public static String newElementFromList(String... list){
+        return faker.options().option(list);
     }
 
     public static Date newBirthDate(){

@@ -48,7 +48,7 @@ public class User {
         subject = newElementFromList(new String[]{"English", "Chemistry", "Computer Science", "Commerce",
                 "Economics", "Social Studies", "Arts", "History", "Maths", "Accounting", "Physics",
                 "Biology", "Hindi", "Civics"});
-        hobbies = (Arrays.stream(new String[]{"Music", "Sports", "Reading"}).toList()).subList(0, getRandomInt(0,3));
+        hobbies = (List.of("Music", "Sports", "Reading").subList(0, getRandomInt(0,3)));
 
         //штат+город
         state = newElementFromList(new String[]{"NCR","Uttar Pradesh","Haryana","Rajasthan"});
@@ -59,38 +59,14 @@ public class User {
         ;
     }
 
-    private String[] cities(String state){
-        String[] cities = new String[0];
-
-        switch (state) {
-            case "NCR": {
-                cities = new String[]{"Delhi", "Gurgaon", "Noida"};
-                break;
-            }
-            case "Uttar Pradesh": {
-                cities = new String[]{"Agra","Lucknow","Merrut"};
-                break;
-            }
-            case "Haryana": {
-                cities = new String[]{"Karnal","Panipat"};
-                break;
-            }
-            case "Rajasthan": {
-                cities = new String[]{"Jaipur","Jaiselmer"};
-                break;
-            }
-        }
-
-        return cities;
+    private String cities(String state){
+        return switch (state) {
+            case "NCR" -> newElementFromList("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> newElementFromList("Agra", "Lucknow", "Merrut");
+            case "Haryana" -> newElementFromList("Karnal", "Panipat");
+            case "Rajasthan" -> newElementFromList("Jaipur", "Jaiselmer");
+            default -> throw new IllegalStateException("Illegal state!");
+        };
     }
 
-    private List<Path> getFiles() throws IOException {
-        Path resourceDirectory = Paths.get("src","test","resources");
-        List<Path> files = Files.list(resourceDirectory)
-                .toList();
-        if (files.isEmpty()) {
-            throw new IOException("В папке ресурсов нет файлов.");
-        }
-        return files;
-    }
 }
