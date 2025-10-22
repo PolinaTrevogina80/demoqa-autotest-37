@@ -36,7 +36,7 @@ public class User {
         email = newEmail();
         streetAddress = newAddress();
         phoneNumber = newPhone();
-        gender = newElementFromList(new String[]{"Male", "Female", "Other"});
+        gender = newElementFromList("Male", "Female", "Other");
 
         //дата
         birthDate = newBirthDate();
@@ -45,18 +45,17 @@ public class User {
         birthMonth = convertMonthToText(Integer.valueOf(birthDate.getMonth()));
 
         //увлечения
-        subject = newElementFromList(new String[]{"English", "Chemistry", "Computer Science", "Commerce",
+        subject = newElementFromList("English", "Chemistry", "Computer Science", "Commerce",
                 "Economics", "Social Studies", "Arts", "History", "Maths", "Accounting", "Physics",
-                "Biology", "Hindi", "Civics"});
+                "Biology", "Hindi", "Civics");
         hobbies = (List.of("Music", "Sports", "Reading").subList(0, getRandomInt(0,3)));
 
         //штат+город
-        state = newElementFromList(new String[]{"NCR","Uttar Pradesh","Haryana","Rajasthan"});
+        state = newElementFromList("NCR","Uttar Pradesh","Haryana","Rajasthan");
         city = newElementFromList(cities(state));
 
         //файл
-        fileName = getRandomResourceFileName();
-        ;
+        fileName = newElementFromList("file1.png", "file2.png", "file3.png");
     }
 
     private String cities(String state){
