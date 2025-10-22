@@ -54,35 +54,4 @@ public class RandomUtils {
 
         return sb.toString();
     }
-
-    public static String getRandomString(int numbers){
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        SecureRandom rnd = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numbers; i++)
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
-
-        return sb.toString();
-    }
-
-    public static String getRandomResourceFileName() throws IOException, URISyntaxException {
-        String filename;
-
-        Path resourceDirectory = Paths.get("src","test","resources");
-
-        // Получить список всех файлов в папке
-        List<Path> files = Files.list(resourceDirectory)
-                .toList();
-
-        if (files.isEmpty()) {
-            throw new IOException("В папке ресурсов нет файлов.");
-        }
-
-        // Выбрать случайный файл
-        Random random = new Random();
-        Path randomFilePath = files.get(random.nextInt(files.size()));
-        filename = String.valueOf(randomFilePath.getFileName());
-
-        return filename;
-    }
 }
