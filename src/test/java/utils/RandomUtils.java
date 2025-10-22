@@ -42,16 +42,7 @@ public class RandomUtils {
     }
 
     public static int getRandomInt(int before, int until){
-        return faker.number().numberBetween(1,3);
+        return faker.number().numberBetween(before,until);
     }
 
-    public static String getRandomNumberString(int numbers){
-        String digits = "0123456789";
-        SecureRandom rnd = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numbers; i++)
-            sb.append(digits.charAt(rnd.nextInt(digits.length())));
-
-        return sb.toString();
-    }
 }
