@@ -2,9 +2,6 @@ package data;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -55,7 +52,7 @@ public class User {
         city = newElementFromList(cities(state));
 
         //файл
-        fileName = newElementFromList("file1.png", "file2.png", "file3.png");
+        fileName = newElementFromList("ava.jpg", "ava1.jpg", "ava2.jpg","ava3.jpg");
     }
 
     private String cities(String state){
